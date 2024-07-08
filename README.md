@@ -1,6 +1,6 @@
 # Embryo and Sperm Classification Models Using Transfer Learning
 
-This project aims to develop models that aidd in the IVF process by classifying embryo and sperm images as good or bad. The models use transfer learning with ResNet101 and VGG16 to achieve high accuracy.
+This project aims to develop models that aid in the IVF process by classifying embryo and sperm images as good or bad. The models use transfer learning with ResNet101 and VGG16 to achieve high accuracies.
 
 
 ## Link to the datasets: https://osf.io/3kc2d/
