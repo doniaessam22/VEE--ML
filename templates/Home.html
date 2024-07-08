@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/Homepage.css">
+    <title>Home</title>
+</head>
+<body>
+    <div class="background-div">
+        <div class="title">
+            <h1 style="font-size: xxx-large; color: rgb(37, 40, 83);">Utilizing the power of AI <br> to help in image analysis</h1>
+            <h3 style="color: rgb(37, 40, 83); font-size: 25px;">VEE is your AI assistant to a successful pregnancy</h3>
+        </div>
+
+        <div class="arrow-down" onclick="scrollDown()"></div>
+    </div>
+
+    <div class="transparent-bar" id="transparentBar">
+        <div class="logo">
+            <a href="/">
+                <img src="static/media/VEE navy.png" alt="VEE Logo" class="logo" id="logo">
+            </a>
+            <img src="static/media/VEE white.png" alt="New Logo" class="logo" id="newLogo" style="display: none;">
+        </div>
+        <div class="bar-buttons-section">
+            <button class="bar-button" onclick="location.href='/'">Home</button>
+            <button class="bar-button" onclick="location.href='/aboutUs'">About</button>
+            <button class="bar-button" onclick="location.href='/contact'" id="contactButton">Contact us</button>
+        </div>
+    </div>
+
+    <div>
+        <h1 class="centered-heading">WHO WE ARE</h1>
+        <div class="vee-description">
+            <p>VEE is an AI-powered tool created to assist you during the selection stage of the <a href="https://www.nhs.uk/conditions/ivf/" target="_blank">IVF</a> process.</p>
+            <p>It provides analysis for sperm and embryo images, categorizing them into either positive or negative classes.</p>
+        </div>
+    </div>
+
+    <div>
+        <h1 class="centered-heading">OUR PERKS</h1>
+        <div class="perks-section">
+            <div class="perk">
+                <img src="static/media/fast pastel.png" alt="Image 1">
+                <p>Fast Analysis</p>
+            </div>
+            <div class="perk">
+                <img src="static/media/high pastel.png" alt="Image 2">
+                <p>High Accuracy</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h1 class="centered-heading" id="analysis">Analysis</h1>
+        <div class="sperm-analysis">
+            <img src="static/media/analysis background.png" alt="Background Image" class="sperm-analysis-background">
+            <a href="sperm_analysis.html">
+                <img src="static/media/sperm.png" alt="Sperm Image" class="sperm-analysis-image">
+            </a>
+            <div class="sperm-analysis-description" style="font-size: larger;">
+                <h2>Sperm Image Analysis</h2>
+                <p>Upload a Sperm image for classification as good or bad based on the morphological quality.</p>
+            </div>
+        </div>
+
+        <div class="embryo-analysis">
+            <img src="static/media/analysis background.png" alt="Background Image" class="embryo-analysis-background">
+            <a href="embryo_analysis.html">
+                <img src="static/media/embryo.png" alt="Embryo Image" class="embryo-analysis-image">
+            </a>
+            <div class="embryo-analysis-description" style="font-size: larger;">
+                <h2>Embryo Image Analysis</h2>
+                <p>Upload an Embryo image for classification as good or bad based on the presence of blastocysts.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="contact-section">
+        <h1 style="font-size: 25px; margin-top: 20px">Have a question or need help?</h1>
+        <div onclick="location.href='/contact'">
+            <div class="contact-button">CONTACT US</div>
+        </div>
+        <p>&copy; 2024 VEE.&nbsp;All rights reserved.</p>
+    </div>
+
+
+    <script>
+        function scrollDown() { /*for the down arrow*/
+            window.scrollBy({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', function() {
+            var transparentBar = document.getElementById('transparentBar');
+            var analysisHeading = document.getElementById('analysis');
+            var rect = analysisHeading.getBoundingClientRect();
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            var logo = document.getElementById('logo');
+            var newLogo = document.getElementById('newLogo');
+            var barButtons = document.querySelectorAll('.bar-button');
+
+            if (rect.top <= windowHeight && rect.bottom >= 0) {
+                transparentBar.classList.add('navy');
+                logo.style.display = 'none';
+                newLogo.style.display = 'block'; // Change to "VEE ONLY" logo
+                barButtons.forEach(button => button.classList.add('white-text')); // Change button color
+            } else if (rect.bottom < 0) {
+                transparentBar.classList.add('navy');
+                logo.style.display = 'none';
+                newLogo.style.display = 'block'; // Ensure "VEE ONLY" logo remains when below analysis
+                barButtons.forEach(button => button.classList.add('white-text')); // Ensure button color remains
+            } else {
+                transparentBar.classList.remove('navy');
+                logo.style.display = 'block';
+                newLogo.style.display = 'none'; // Revert to "VEE navy" logo
+                barButtons.forEach(button => button.classList.remove('white-text')); // Revert button color
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() { /*for embryo analysis*/
+            var image = document.querySelector('.embryo-analysis-image');
+
+            function checkVisibility() {
+                var rect = image.getBoundingClientRect();
+                var isVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
+
+                if (isVisible) {
+                    image.classList.add('visible');
+                    window.removeEventListener('scroll', checkVisibility); // Remove the event listener once the image is visible
+                }
+            }
+
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Check visibility on page load
+        });
+
+        document.addEventListener("DOMContentLoaded", function() { /*for sperm analysis*/
+            var image = document.querySelector('.sperm-analysis-image');
+
+            function checkVisibility() {
+                var rect = image.getBoundingClientRect();
+                var isVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
+
+                if (isVisible) {
+                    image.classList.add('visible');
+                    window.removeEventListener('scroll', checkVisibility); // Remove the event listener once the image is visible
+                }
+            }
+
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Check visibility on page load
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const centeredHeadings = document.querySelectorAll('.centered-heading');
+            const hrElements = document.querySelectorAll('hr');
+
+            const isInViewport = (element) => {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            };
+
+            const onScroll = () => {
+                centeredHeadings.forEach((heading) => {
+                    if (isInViewport(heading)) {
+                        heading.classList.add('visible');
+                    }
+                });
+                hrElements.forEach((hr) => {
+                    if (isInViewport(hr)) {
+                        hr.classList.add('visible');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Check if elements are already in viewport on page load
+        });
+
+    </script>
+</body>
+</html>

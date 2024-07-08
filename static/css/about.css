@@ -1,0 +1,378 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: rgb(37, 40, 83);
+    color: white; /* Set text color to white */
+}
+
+p{
+    font-size: 22px;
+}
+
+.background {
+    position: relative;
+    height: 40vh;
+    overflow: hidden; /* Ensure the video doesn't overflow */
+}
+
+#background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensure the video is behind other content */
+}
+
+.background-div img {
+    width: 100%;
+    height: 2400px; /* Set the image height to 2400px */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Place the image behind other content */
+}
+
+.transparent-bar {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+    z-index: 9999;
+}
+
+.transparent-bar.navy { /*when scrolled down*/
+    background-color: rgb(37, 40, 83);
+}
+
+.bar-buttons-section {
+    margin-right: 60px;
+}
+
+.bar-button {
+    background: none;
+    border: none;
+    color: rgb(37, 40, 83);
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#contactButton{
+    text-decoration: underline;
+}
+
+.bar-button.white-text { /* When contact section is in view */
+    color: rgb(255, 255, 255);
+}
+
+.logo {
+    margin-left: 30px;
+    margin-top: 5px;
+    width: 100px;
+    height: auto;
+}
+
+.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgb(37, 40, 83);
+    z-index: 1; /* Ensure content is above the background image */
+    font-size: x-large;
+}
+
+
+.brand {
+    margin-left: 30px;
+}
+
+.brand h1 {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 28px;
+    margin: 0;
+}
+
+.buttons {
+    margin-right: 40px;
+}
+
+.button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.contact .button-container:hover {
+    background-color: #720072;
+    transform-style: preserve-3d;
+
+}
+
+.logo {
+    width: 100px; /* Adjust width as needed */
+    height: auto;
+}
+
+.contact {
+    background-color:whitesmoke;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.contact .button-container {
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: #7c1381c9;
+    transition: background-color 0.3s ease;
+}
+
+.contact .rectangle-button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.content {
+    padding: 20px;
+    margin-top: 80px;
+    color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.centered-heading { /*For the titles like WHO WE ARE and OUR PERKS*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 270px;
+    margin-top: 70px; /* Add a top margin of 20px */
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.centered-heading::before,
+.centered-heading::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ffffff;
+    margin: 0 5px; /* Shortened margin */
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.centered-heading.visible {
+    opacity: 1;
+}
+
+.centered-heading.visible::before,
+.centered-heading.visible::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.Description{
+    text-align: center;
+    line-height: 1.6;
+    text-align: center;
+    margin-top: 80px;
+    font-size: 20px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+a{
+    color:rgb(208, 196, 251);
+}
+
+/* Container for the columns */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjusts spacing between columns */
+
+}
+
+/* Four columns side by side */
+.column {
+    flex: 1;
+    min-width: 23%; /* Adjust width to fit four columns side by side */
+    padding: 0 8px;
+    display: flex;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+    .column {
+        width: 100%;
+        display: block;
+    }
+}
+
+/* Add some shadows to create a card effect */
+.card {
+    box-shadow: 0 4px 100px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 450px; /* Adjusted fixed height for the cards */
+    padding: 8px; /* Adjust padding to fit content */
+    align-items: center; /* Center content horizontally */
+}
+
+/* Ensure the image fits within the card */
+.card img {
+    width: 200px; /* Set a fixed width for the images */
+    height: 200px; /* Set a fixed height for the images */
+    object-fit: cover; /* Ensure the images cover the area without stretching */
+}
+
+/* Some left and right padding inside the container */
+.container {
+    padding: 8px; /* Reduce padding to fit content within smaller height */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+    justify-content: space-between; /* Ensures the contact button is at the bottom */
+    flex: 1;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.title-card {
+    color: rgb(255, 255, 255);
+    font-size: 15px; /* Adjust font size to fit within smaller height */
+    margin-top: -30px;
+}
+
+.button {
+    border: 1px solid white; /* Add a white border */
+    border-radius: 20px; /* Make the button circular */
+    transition: all 0.3s ease; /* Smooth transition */
+    font-weight: 550; /* Make the font bold */
+    padding: 8px;
+    transform: translateX(-50%);
+    color: white;
+    background-color: rgba(255, 255, 255, 0.018); /* Background color */
+    text-align: center;
+    cursor: pointer;
+    width: 100px;
+    margin: 0px auto 0px 108px; /* Center the button */
+    font-size: 14px; /* Adjust font size to fit within smaller height */
+}
+
+.button:hover {
+    color: rgb(37, 40, 83);
+    background-color: rgb(204,196,234); /* Background color */
+    transform: translateX(-50%) scale(1.1); /* Slight zoom-in effect */
+}
+
+
+hr {
+    height: 1px;
+    width: 60%;
+    margin: 300px auto 0px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+hr.visible {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.contact-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    margin-top: 0px;
+}
+
+.contact-section p{
+    font-size: 14px;
+    color: #f8f8f8;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.contact-button {
+    background-color: rgba(77, 134, 194, 0);
+    width: 170px; /* Set width and height to create a circular button */
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 20px; /* Make the button circular */
+    color: white; /* Text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em; /* Increase font size */
+    border: 1px solid white; /* Add a white border */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+
+.contact-button:hover {
+    background-color: rgb(204,196,234); /* Background color */
+    color: rgb(37, 40, 83);
+    transform: scale(1.05); /* Slight zoom-in effect */
+    cursor: pointer;
+}
+
+.contact .button-container {
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: #94119bc9;
+    transition: background-color 0.3s ease;
+}

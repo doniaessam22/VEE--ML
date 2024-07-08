@@ -1,0 +1,417 @@
+body {
+     margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: rgb(37, 40, 83);
+    color: white; /* Set text color to white */
+
+}
+
+p{
+    font-size: 22px;
+}
+.background-div {
+    position: relative;
+    height: 40vh;
+    overflow: hidden; /* Ensure the video doesn't overflow */
+}
+
+#background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensure the video is behind other content */
+}
+
+.background-div img {
+    width: 100%;
+    height: 2400px; /* Set the image height to 2400px */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Place the image behind other content */
+}
+
+.transparent-bar {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+    z-index: 9999;
+}
+
+.transparent-bar.navy { /when scrolled down/
+    background-color: rgb(37, 40, 83);
+}
+
+.bar-buttons-section {
+    margin-right: 60px;
+}
+
+.bar-button {
+    background: none;
+    border: none;
+    color: rgb(37, 40, 83);
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#contactButton{
+    text-decoration: underline;
+}
+
+.bar-button.white-text { /* When contact section is in view */
+    color: rgb(255, 255, 255);
+}
+
+.logo {
+    margin-left: 30px;
+    margin-top: 5px;
+    width: 100px;
+    height: auto;
+}
+
+
+.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgb(37, 40, 83);
+    z-index: 1; /* Ensure content is above the background image */
+    font-size: x-large;
+}
+
+
+
+.brand {
+    margin-left: 30px;
+}
+
+.brand h1 {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 28px;
+    margin: 0;
+}
+
+
+.content {
+    position: relative;
+    left: 10%;
+    padding: 15px;
+    float: left;
+    width: 40%;
+    margin-top: 120px;
+    margin-right: 5%;
+    padding: 15px;
+}
+
+.content2{
+    margin-top: -10px;
+    margin-right: 100px;
+    float: right;
+    width: 32%;
+    padding: 50px;
+}
+
+
+.embryo-icon {
+    position: absolute;
+    top: 10%; /* Adjust vertical positioning */
+    left: 30%; /* Center horizontally */
+    transform: translate(-50%, -50%);
+}
+
+.small-embryo {
+    width: 40px; /* Adjust width as needed */
+    position: absolute; /* Keep it in normal document flow */
+    margin-left: -29%; /* Adjust left margin to create space between content1 and sperm icon */
+    margin-top: 17%; /* Adjust top margin for spacing */
+}
+
+p, label{
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.input {
+    position: relative;
+    left: 10%;
+    padding: 15px;
+    float: left;
+    width: 40%;
+    margin-right: 5%;
+    padding: 15px;
+    margin-top: 20px;
+
+}
+
+#drop-area {
+    border: 2px double #ccc;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    margin-top: 20px;
+    height: 30vh;
+    width: 98%;
+    background-color: rgba(147, 112, 219, 0.1);
+    margin: auto;
+    position: relative;
+    right: 25px;
+    justify-content: center;
+
+}
+
+#drop-area.active {
+    background-color: #f2f2f2;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: none;
+    border-radius: 10px;
+}
+
+#remove-btn {
+    background: none;
+    color: rgb(255,255,255);
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+#remove-btn:hover {
+    text-decoration: underline;
+}
+
+input[type="submit"] {
+    background-color: #9d009d;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type="submit"]:hover {
+    background-color: #720072;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e1ccf8;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px;
+    color: navy; /* Set the text color to navy */
+    font-weight: bold; /* Make all <b> elements bold */
+    box-shadow: 15px 15px 15px 5px rgb(19, 19, 19); /* Add a subtle box shadow */
+
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.close:hover {
+    color: black;
+}
+
+#resultText {
+    font-size: 18px;
+    color: #555;
+}
+
+.loader {
+    border: 5px solid #7e7a7a; /* Adjusted size */
+    border-bottom: 5px solid #9c7fc2; /* Adjusted size */
+    border-radius: 50%;
+    width: 30px; /* Adjusted size */
+    height: 30px; /* Adjusted size */
+    animation: spin 1s linear infinite;
+    display: none; /* Hide the loader initially */
+    position: absolute;
+    top: 50%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+}
+/*animation for loader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#btn-analyze {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(77, 134, 194, 0);
+    border-radius: 20px; /* Make the button circular */
+    border: 1px solid white; /* Add a white border */
+    padding: 9px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition */
+    font-weight: 550; /* Make the font bold */
+    width: 120px; /* Initial width */
+    display: block;
+    position: relative; /* Relative position for loader placement */
+    margin: -5px auto; /* Center the button horizontally */
+}
+
+#btn-analyze:hover {
+    color: rgb(37, 40, 83);
+    background-color: rgb(204,196,234); /* Background color */
+    transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+.remove-image {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#selected-image {
+    display: block;
+    width: 140px;
+    height: 140px;
+    top: calc(20% + 50px); /* Adjust the positioning */
+    left: 174px;
+    margin-top: -220px;
+    position: absolute;
+    border: 8px ;
+    border-bottom: 8px ;
+    border-radius: 50%;
+}
+
+#preview {
+     text-align: center;
+     margin-bottom: 0px; /* Adjust as needed */
+     position: relative;
+}
+
+#preview img {
+     max-width: 400px; /* Adjust width as needed */
+     max-height: 400px; /* Adjust height as needed */
+     border-radius: 10px;
+     display: none; /* Hide initially */
+
+}
+
+
+hr {
+    height: 1px;
+    width: 60%;
+    margin: 50px auto 0px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    margin-top: 15px;
+}
+
+hr.visible {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.contact-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    margin-top: 0px;
+}
+
+.contact-section p{
+    font-size: 14px;
+    color: #f8f8f8;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.contact-button {
+    background-color: rgba(77, 134, 194, 0);
+    width: 170px; /* Set width and height to create a circular button */
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 20px; /* Make the button circular */
+    color: white; /* Text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em; /* Increase font size */
+    border: 1px solid white; /* Add a white border */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.contact-button:hover {
+    background-color: rgb(204,196,234); /* Background color */
+    color: rgb(37, 40, 83);
+    transform: scale(1.05); /* Slight zoom-in effect */
+    cursor: pointer;
+}
+
+.contact .button-container {
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: #94119bc9;
+    transition: background-color 0.3s ease;
+}

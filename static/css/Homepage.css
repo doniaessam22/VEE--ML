@@ -1,0 +1,364 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: rgb(37, 40, 83);
+    color: rgb(255, 255, 255); /* Set text color to white */
+}
+
+p{
+    font-size: 22px;
+}
+
+.background-div {
+    position: relative;
+    height: 100vh;
+    background-image: url('home background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Place the video behind other content */
+}
+
+.title-icon {
+    width: 400px;
+    height: 400px;
+    float: right;
+    margin-right: 150px;
+    margin-top: 200px;
+    animation: zoom 4s ease-in-out infinite;
+}
+
+@keyframes zoom {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.transparent-bar {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+    z-index: 9999;
+}
+
+.transparent-bar.navy { /* When scrolled down */
+    background-color: rgb(37, 40, 83);
+}
+
+.bar-buttons-section {
+    margin-right: 60px;
+}
+
+.bar-button {
+    background: none;
+    border: none;
+    color: rgb(37, 40, 83);;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#contactButton{
+    text-decoration: underline;
+}
+
+.bar-button.white-text { /* When contact section is in view */
+    color: rgb(255, 255, 255);
+}
+
+.logo {
+    margin-left: 30px;
+    margin-top: 5px;
+    width: 100px;
+    height: auto;
+}
+
+.title {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: aliceblue;
+    z-index: 1; /* Ensure content is above the video */
+}
+
+@keyframes arrow-animation { /* Animation for down arrow */
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(20px);
+    }
+}
+
+.arrow-down {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #252853;
+    animation: arrow-animation 1s infinite alternate;
+}
+
+.arrow-down:hover {
+    cursor: pointer;
+}
+
+.centered-heading { /* For the titles like WHO WE ARE and OUR PERKS */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 270px;
+    margin-top: 70px; /* Add a top margin of 20px */
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.centered-heading::before,
+.centered-heading::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ffffff;
+    margin: 0 5px; /* Shortened margin */
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.centered-heading.visible {
+    opacity: 1;
+}
+
+.centered-heading.visible::before,
+.centered-heading.visible::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.vee-description {
+    text-align: center;
+    margin-bottom: 70px;
+    font-size: larger;
+}
+
+.vee-description a {
+    color:rgb(208, 196, 251); /* Change this to the color you want */
+}
+
+
+.perks-section {
+    text-align: center;
+    margin: 70px auto;
+    display: flex;
+    justify-content: center; /* Center align the perk images */
+    gap: 400px; /* Add spacing between the perk images */
+}
+
+.perk {
+    text-align: center;
+    flex: 0 0 auto; /* Prevent the images from shrinking */
+}
+
+.perk img {
+    width: 150px; /* Increase the width of the images */
+    height: auto; /* Increase the height of the images */
+}
+
+
+.perk p {
+    margin: 5px 0; /* Add margin below the text */
+    font-size: x-large;
+}
+
+@keyframes slideInLeft { /*animation for analysis images*/
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.sperm-analysis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative; /* Set the container to relative positioning */
+}
+
+.sperm-analysis-image {
+    position: absolute; /* Set the images to absolute positioning */
+    top: 170px; /* Position the images at the top of the container */
+    left: 343px; /* Position the images slightly to the right */
+    max-width: 220px; /* Adjust the image size as needed */
+    opacity: 0; /* Initially hidden */
+    transform: translateX(-50%); /* Start position off the screen to the left */
+    transition: opacity 0.001s ease-in-out, transform 1s ease-in-out; /* Smooth transition */
+    z-index: 1; /* Ensure that the sperm analysis image is above the background image */
+}
+
+.sperm-analysis-image:hover {
+    transform:  scale(1.2) !important; /* Zoom in by 20% when hovered */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.sperm-analysis-background {
+    position: absolute; /* Set the images to absolute positioning */
+    top: 0; /* Position the images at the top of the container */
+    left: 200px; /* Position the images slightly to the right */
+    max-width: 500px; /* Adjust the image size as needed */
+    margin-right: 90px; /* Space between the image and the text */
+}
+
+.sperm-analysis-image.visible {
+    opacity: 1; /* Fully visible when the class is added */
+    transform: translateX(0); /* Slide in to the original position */
+}
+
+.sperm-analysis-description {
+    max-width: 480px; /* Limit the width of the text */
+    margin-top: 150px;
+    margin-left: 570px; /* Move the text to the right */
+    margin-bottom: 200px;
+}
+
+.embryo-analysis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+    position: relative; /* Set the container to relative positioning */
+}
+
+.embryo-analysis-image {
+    position: absolute; /* Set the images to absolute positioning */
+    top: 170px; /* Position the images at the top of the container */
+    left: 924px; /* Position the images slightly to the right */
+    max-width: 180px; /* Adjust the image size as needed */
+    margin-left: 90px; /* Space between the text and the image */
+    opacity: 0; /* Initially hidden */
+    transform: translateX(50%); /* Start position off the screen to the left */
+    transition: opacity 0.001s ease-in-out, transform 1s ease-in-out; /* Smooth transition */
+    z-index: 1; /* Ensure that the sperm analysis image is above the background image */
+
+}
+
+.embryo-analysis-image:hover {
+    transform:  scale(1.2) !important; /* Zoom in by 20% when hovered */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.embryo-analysis-background {
+    position: absolute; /* Set the images to absolute positioning */
+    top: 10px; /* Position the images at the top of the container */
+    left: 850px; /* Position the images slightly to the right */
+    max-width: 500px; /* Adjust the image size as needed */
+}
+
+.embryo-analysis-image.visible {
+    opacity: 1; /* Fully visible when the class is added */
+    transform: translateX(0); /* Slide in to the original position */
+}
+
+.embryo-analysis-description {
+    max-width: 500px; /* Limit the width of the text */
+    margin-top: 150px;
+    margin-right: 430px;
+}
+
+hr {
+    height: 1px;
+    width: 60%;
+    margin: 300px auto 0px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+hr.visible {
+    opacity: 1;
+    transform: scaleX(1);
+}
+.contact-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    margin-top: 0px;
+}
+
+.contact-section p{
+    font-size: 14px;
+    color: #f8f8f8;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.contact-button {
+    background-color: rgba(77, 134, 194, 0);
+    width: 170px; /* Set width and height to create a circular button */
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 20px; /* Make the button circular */
+    color: white; /* Text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em; /* Increase font size */
+    border: 1px solid white; /* Add a white border */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+
+.contact-button:hover {
+    background-color: rgb(204,196,234); /* Background color */
+    color: rgb(37, 40, 83);
+    transform: scale(1.05); /* Slight zoom-in effect */
+    cursor: pointer;
+}
+
+
+.contact .button-container {
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: #94119bc9;
+    transition: background-color 0.3s ease;
+}

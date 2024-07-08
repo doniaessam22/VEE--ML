@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/about.css">
+    <title>About</title>
+</head>
+<body>
+    <div class="background">
+        <div class="title">
+            <h1>About</h1>
+        </div>
+        <video autoplay muted loop id="background-video">
+            <source src="static/media/vid background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="transparent-bar" id="transparentBar">
+        <div class="logo">
+            <a href="/">
+                <img src="static/media/VEE navy.png" alt="VEE Logo" class="logo" id="logo">
+            </a>
+            <img src="static/media/VEE white.png" alt="New Logo" class="logo" id="newLogo" style="display: none;">
+        </div>
+
+        <div class="bar-buttons-section">
+            <button class="bar-button" onclick="location.href='/'">Home</button>
+            <button class="bar-button" onclick="location.href='/aboutUs'">About</button>
+            <button class="bar-button" onclick="location.href='/contact'" id="contactButton">Contact us</button>
+        </div>
+    </div>
+
+    <div>
+        <div class="Description">
+            <h3>Welcome to our VEE tool website!</h3>
+            </br>
+            We are a passionate team of four students from Cairo University, united by our shared interest in leveraging advanced technologies to
+            improve healthcare outcomes. Our journey began with a mission to contribute meaningfully
+            to the field of reproductive medicine, specifically the in vitro fertilization (<a href="https://www.nhs.uk/conditions/ivf/" target="_blank">IVF</a>) process.
+            <br>
+            As part of our graduation project, we developed an innovative tool that utilizes deep learning
+            and transfer learning models to classify Sperm and Embryo as "good" or "bad", thereby aiding the IVF process.
+            <br>
+            Our tool, which we call VEE, stands as a testament to our dedication and hard work.
+        </div>
+    </div>
+    <div>
+        <h1 class="centered-heading">Our Mission</h1>
+        <div class="Description">
+         <p>Our primary goal is to enhance the efficiency and success rates of IVF procedures
+            <br> by providing an accurate, fast, reliable, and user-friendly tool for medical professionals.
+            <br>By integrating advanced deep learning techniques into reproductive medicine,
+            <br>we aim to offer hope and support to couples and individuals seeking to start or expand their families.</p>
+        </div>
+    </div>
+    <div>
+        <h1 class="centered-heading" id="achievments">What We Offer</h1>
+        <div class="Description">
+          <p><b>Sperm Classification Model:</b>
+            <br>Achieving an impressive test accuracy of 99%, this model ensures precise identification of healthy sperm,
+            <br> which is crucial for the success of IVF treatments.</p>
+
+          <p><b>Embryo Classification Model:</b>
+            <br>With a test accuracy rate of 93%, our model aids in the selection of the best embryo
+            <br>by identifying the healthy blastocyst embryo, increasing the chances of successful implantation and pregnancy.</p>
+        </div>
+    </div>
+    <div>
+        <h1 class="centered-heading">Meet Our Team</h1>
+        <div class="Description">
+            <div class="row">
+
+                <div class="column">
+                  <div class="card">
+                    <img src="static/media/Malak.jpeg" alt="Malak" >
+                    <div class="container">
+                      <h2 style="font-size: x-large;">Malak Medhat</h2>
+                      <p class="title-card">Machine Learning Engineer</p>
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=malakmedhatt@gmail.com" target="_blank">
+                        <button class="button">Contact</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="card">
+                    <img src="static/media/Alaa.jpeg" alt="Alaa">
+                    <div class="container">
+                      <h2 style="font-size: x-large;">Alaa Ashraf</h2>
+                      <p class="title-card">Machine Learning Engineer</p>
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alaasotohy25@gmail.com" target="_blank">
+                        <button class="button">Contact</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="card">
+                    <img src="static/media/Donia.jpeg" alt="Donia">
+                    <div class="container">
+                      <h2 style="font-size: x-large;">Donia Essam</h2>
+                      <p class="title-card">Web Developer</p>
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=douniaessam069@gmail.com" target="_blank">
+                        <button class="button">Contact</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                      <img src="static/media/Menna.jpeg" alt="Menna">
+                      <div class="container">
+                        <h2 style="font-size: x-large;">Menna Mahmoud</h2>
+                        <p class="title-card">Web Developer</p>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mennashawkat429@gmail.com" target="_blank">
+                            <button class="button">Contact</button>
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+    </div>
+
+    <hr id="hr" style="margin-top: 100px;" >
+
+    <div class="contact-section">
+        <h1 style="font-size: 25px; margin-top: 20px">Have a question or need help?</h1>
+        <div onclick="location.href='/contact'">
+            <div class="contact-button">CONTACT US</div>
+        </div>
+        <p>&copy; 2024 VEE.&nbsp;All rights reserved.</p>
+    </div>
+
+     <script>
+         function scrollDown() { /*for the down arrow*/
+            window.scrollBy({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', function() { /*for the bar at the top*/
+            var transparentBar = document.getElementById('transparentBar');
+            var analysisHeading = document.getElementById('achievments');
+            var rect = analysisHeading.getBoundingClientRect();
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            var logo = document.getElementById('logo');
+            var barButtons = document.querySelectorAll('.bar-button');
+
+            if (rect.top <= windowHeight && rect.bottom >= 0) {
+                transparentBar.classList.add('navy');
+                logo.src = 'static/media/VEE white.png'; // Change logo
+                barButtons.forEach(button => button.classList.add('white-text')); // Change button color
+            } else if (rect.top < 0) {
+                transparentBar.classList.add('navy');
+                logo.src = 'static/media/VEE white.png'; // Change logo
+                barButtons.forEach(button => button.classList.add('white-text')); // Change button color
+            } else {
+                transparentBar.classList.remove('navy');
+                logo.src = 'static/media/VEE navy.png'; // Revert logo
+                barButtons.forEach(button => button.classList.remove('white-text')); // Revert button color
+            }
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function() { /*for embryo analysis*/
+            var image = document.querySelector('.embryo-analysis-image');
+
+            function checkVisibility() {
+                var rect = image.getBoundingClientRect();
+                var isVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
+
+                if (isVisible) {
+                    image.classList.add('visible');
+                    window.removeEventListener('scroll', checkVisibility); // Remove the event listener once the image is visible
+                }
+            }
+
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Check visibility on page load
+        });
+
+        document.addEventListener("DOMContentLoaded", function() { /*for sperm analysis*/
+            var image = document.querySelector('.sperm-analysis-image');
+
+            function checkVisibility() {
+                var rect = image.getBoundingClientRect();
+                var isVisible = (rect.top >= 0) && (rect.bottom <= window.innerHeight);
+
+                if (isVisible) {
+                    image.classList.add('visible');
+                    window.removeEventListener('scroll', checkVisibility); // Remove the event listener once the image is visible
+                }
+            }
+
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Check visibility on page load
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const centeredHeadings = document.querySelectorAll('.centered-heading');
+            const hrElements = document.querySelectorAll('hr');
+
+            const isInViewport = (element) => {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            };
+
+            const onScroll = () => {
+                centeredHeadings.forEach((heading) => {
+                    if (isInViewport(heading)) {
+                        heading.classList.add('visible');
+                    }
+                });
+                hrElements.forEach((hr) => {
+                    if (isInViewport(hr)) {
+                        hr.classList.add('visible');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Check if elements are already in viewport on page load
+        });
+    </script>
+</body>
+</html>

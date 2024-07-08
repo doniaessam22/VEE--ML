@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embryo Analysis Page</title>
+    <link rel="stylesheet" href="/static/css/Embryo.css">
+</head>
+
+<body>
+    <div class="background-div">
+        <div class="title">
+            <h1>Embryo Analysis</h1>
+        </div>
+        <video autoplay muted loop id="background-video">
+            <source src="static/media/vid background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="transparent-bar" id="transparentBar">
+        <div class="logo">
+            <img src="static/media/VEE navy.png" alt="VEE Logo" class="logo" id="logo">
+            <img src="static/media/VEE white.png" alt="New Logo" class="logo" id="newLogo" style="display: none;">
+        </div>
+
+        <div class="bar-buttons-section">
+            <button class="bar-button" onclick="location.href='/'">Home</button>
+            <button class="bar-button" onclick="location.href='/aboutUs'">About</button>
+            <button class="bar-button" onclick="location.href='/contact'" id="contactButton">Contact us</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>Upload an Embryo image for analysis</h2>
+        <h3 style="margin-top: 60px">Accepted formats: </h3>
+        <p>png, jpg, jpeg</p>
+    </div>
+
+    <br>
+
+    <div class="embryoicon">
+        <img src="static/media/embryoicon.png" alt="small embryo" class="small-embryo" id="small-embryo">
+    </div>
+
+    <div class="content2">
+        <form name="sec1" id="sec1Form" action="/predict2" method="post" enctype="multipart/form-data">
+            <div id="drop-area">
+                <div style="margin-top: 70px;"><b>Drag & Drop files here or click to select an image</b></div>
+                <br>
+                <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" required>
+                <button type="button" id="remove-btn" style="display: none;" onclick="removeImage()">Remove Image</button>
+            </div>
+            <div id="preview">
+                <img id="selected-image" src="#" alt="Selected Image" style="display: none; max-width: 100%; max-height: 300px;">
+            </div>
+            <br>
+            <div style="text-align: center; position: relative;">
+                <button type="submit" id="btn-analyze">Analyze</button>
+                <div class="loader"></div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Original Modal -->
+    <div id="myModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="prediction-result">Prediction Result: </p>
+            <p id="accuracy">Accuracy: </p>
+        </div>
+    </div>
+
+    <!-- New Modal for Invalid File Format -->
+    <div id="invalidFileFormatModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeInvalidFileFormatModal()">&times;</span>
+            <p style="color: red;">Invalid file format. Please upload a png, jpg, or jpeg file!</p>
+        </div>
+    </div>
+
+    <hr id="hr">
+
+    <div class="contact-section">
+        <h1 style="font-size: 25px; margin-top: 20px">Have a question or need help?</h1>
+        <div onclick="location.href='/contact'">
+            <div class="contact-button">CONTACT US</div>
+        </div>
+        <p>&copy; 2024 VEE.&nbsp;All rights reserved.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropArea = document.getElementById("drop-area");
+            const imageUpload = document.getElementById("imageUpload");
+            const selectedImage = document.getElementById("selected-image");
+            const removeBtn = document.getElementById("remove-btn");
+            const preview = document.getElementById("preview");
+            const analyzeButton = document.getElementById("btn-analyze");
+            const loader = document.querySelector(".loader");
+            const hrElement = document.querySelector("hr");
+
+            // Prevent default drag behaviors
+            ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            // Highlight drop area when item is dragged over it
+            ["dragenter", "dragover"].forEach(eventName => {
+                dropArea.addEventListener(eventName, () => dropArea.classList.add("active"), false);
+            });
+
+            ["dragleave", "drop"].forEach(eventName => {
+                dropArea.addEventListener(eventName, () => dropArea.classList.remove("active"), false);
+            });
+
+            // Handle dropped files
+            dropArea.addEventListener("drop", handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+
+                handleFiles(files);
+            }
+
+            // Handle selected files
+            imageUpload.addEventListener("change", function(e) {
+                const files = e.target.files;
+                handleFiles(files);
+            });
+
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    const file = files[0];
+                    const validFormats = ['image/png', 'image/jpg', 'image/jpeg'];
+
+                    if (!validFormats.includes(file.type)) {
+                        // Show the invalid file format modal
+                        document.getElementById("invalidFileFormatModal").style.display = "block";
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        selectedImage.src = e.target.result;
+                        selectedImage.style.display = "block";
+                        removeBtn.style.display = "inline";
+                        preview.style.display = "block";
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // Remove selected image
+            removeBtn.addEventListener("click", removeImage);
+
+            function removeImage() {
+                imageUpload.value = "";
+                selectedImage.src = "#";
+                selectedImage.style.display = "none";
+                removeBtn.style.display = "none";
+                preview.style.display = "none";
+            }
+
+            // Show loader and hide analyze button on form submit
+            document.getElementById("sec1Form").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                analyzeButton.style.display = "none"; // Hide the analyze button
+                loader.style.display = "block"; // Show the loader
+
+            });
+
+            // Intersection Observer to observe hr element
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        hrElement.classList.add("visible");
+                    } else {
+                        hrElement.classList.remove("visible");
+                    }
+                });
+            }, {
+                threshold: 0.1 // Adjust the threshold as needed
+            });
+
+            observer.observe(hrElement);
+        });
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function closeInvalidFileFormatModal() {
+            document.getElementById("invalidFileFormatModal").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" type="text/css" href="static/css/Contact.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("K0HNiwzYfrMOYMhwJ");
+        })();
+    </script>
+</head>
+<body>
+    <div class="background">
+        <div class="title">
+            <h1>Contact Us</h1>
+        </div>
+        <video autoplay muted loop id="background-video">
+            <source src="static/media/vid background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="transparent-bar" id="transparentBar">
+        <div class="logo">
+            <a href="/">
+                <img src="static/media/VEE navy.png" alt="VEE Logo" class="logo" id="logo">
+            </a>
+            <img src="static/media/VEE white.png" alt="New Logo" class="logo" id="newLogo" style="display: none;">
+        </div>
+
+        <div class="bar-buttons-section">
+            <button class="bar-button" onclick="location.href='/'">Home</button>
+            <button class="bar-button" onclick="location.href='/aboutUs'">About</button>
+            <button class="bar-button" onclick="location.href='/contact'" style="text-decoration: underline;">Contact us</button>
+        </div>
+    </div>
+
+    <form id="form" onsubmit="sendMail(event)">
+        <div class="contact1">
+            <h2>Contact us</h2>
+            <p>Do you have a question, an idea, or just want to reach out?</p></br>
+            <h2>Email:</h2>
+            <p>ivf.vee@gmail.com</p>
+        </div>
+
+        <div class="contact2">
+            <div class="namee" style="position: relative;">
+                <label for="sendername">Name</label><br><br>
+                <input type="text" id="sendername" name="sendername" maxlength="80" placeholder="Enter your name..."/><br><br>
+                <label for="msg">Message</label><br><br>
+                <textarea id="msg" name="msg" cols="60" rows="7" placeholder="I want to know more about..."></textarea><br><br><br>
+                <button type="submit" id="sub">Submit</button>
+                <span id="clear" onclick="clearForm()" style="display: none; cursor: pointer; text-decoration: underline; color: white;">Clear</span>
+            </div>
+
+            <div class="emaill">
+                <label for="senderemail">Email</label><br><br>
+                <input type="email" id="senderemail" name="senderemail" maxlength="80" placeholder="Your email address..."/>
+            </div>
+        </div>
+    </form>
+
+    <hr id="hr">
+
+    <div class="contact-section">
+        <p>&copy; 2024 VEE.&nbsp;All rights reserved.</p>
+    </div>
+
+    <script>
+        function sendMail(event) {
+            event.preventDefault();  // Prevent the default form submission
+
+            var senderName = document.getElementById("sendername").value;
+            var senderEmail = document.getElementById("senderemail").value;
+            var message = document.getElementById("msg").value;
+
+            if (!senderName) {
+                alert("Please enter your name.");
+                return;
+            }
+
+            if (!senderEmail) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            if (!message) {
+                alert("Please enter your message.");
+                return;
+            }
+
+            var params = {
+                from_name: senderName,
+                senderemail: senderEmail,
+                msg: message
+            };
+
+            emailjs.send("service_qtdxh3s", "template_0lq1v28", params)  // Replace 'service_qtdxh3s' and 'template_0lq1v28' with actual IDs from EmailJS
+                .then(function(response) {
+                    document.getElementById("sub").innerText = "Message Submitted";
+                    document.getElementById("sub").disabled = true;  // Disable the submit button
+                    document.getElementById("clear").style.display = "inline";  // Show the "Clear" link
+                }, function(error) {
+                    alert("Failed to send email. Error: " + JSON.stringify(error));
+                });
+        }
+
+        function clearForm() {
+            document.getElementById("form").reset();
+            document.getElementById("sub").innerText = "Submit";
+            document.getElementById("sub").disabled = false;  // Enable the submit button
+            document.getElementById("clear").style.display = "none";  // Hide the "Clear" link
+        }
+
+        window.addEventListener('scroll', function() { /*for the bar at the top*/
+            var transparentBar = document.getElementById('transparentBar');
+            var analysisHeading = document.getElementById('hr');
+            var rect = analysisHeading.getBoundingClientRect();
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            var logo = document.getElementById('logo');
+            var barButtons = document.querySelectorAll('.bar-button');
+
+            if (rect.top <= windowHeight && rect.bottom >= 0) {
+                transparentBar.classList.add('navy');
+                logo.src = 'static/media/VEE white.png'; // Change logo
+                barButtons.forEach(button => button.classList.add('white-text')); // Change button color
+            } else if (rect.top < 0) {
+                transparentBar.classList.add('navy');
+                logo.src = 'static/media/VEE white.png'; // Change logo
+                barButtons.forEach(button => button.classList.add('white-text')); // Change button color
+            } else {
+                transparentBar.classList.remove('navy');
+                logo.src = 'static/media/VEE navy.png'; // Revert logo
+                barButtons.forEach(button => button.classList.remove('white-text')); // Revert button color
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const centeredHeadings = document.querySelectorAll('.centered-heading');
+            const hrElements = document.querySelectorAll('hr');
+
+            const isInViewport = (element) => {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            };
+
+            const onScroll = () => {
+                centeredHeadings.forEach((heading) => {
+                    if (isInViewport(heading)) {
+                        heading.classList.add('visible');
+                    }
+                });
+                hrElements.forEach((hr) => {
+                    if (isInViewport(hr)) {
+                        hr.classList.add('visible');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Check if elements are already in viewport on page load
+        });
+    </script>
+</body>
+</html>
