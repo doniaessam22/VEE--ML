@@ -37,4 +37,8 @@ To run this project, follow these steps:
 - Load the datasets from the specified path.
 - Execute the provided notebooks to preprocess the data, perform data augmentation, train the model, and evaluate its performance.
 
+## Demo
+
+https://github.com/sottohy/VEE-ML/assets/91037437/afb6bfd7-23c3-483a-a615-cf999ddfed9d
+
 
