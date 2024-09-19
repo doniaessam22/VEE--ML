@@ -29,6 +29,11 @@ The ResNet101 model was chosen for the embryo images and the VGG16 model was cho
 - Training: The models were trained using the processed datasets, achieving a high accuracy.
 - Testing: The models' performance was evaluated on a test set, resulting in a test accuracy of 93% for the embryo model, and an accuracy of 99% for the sperm model.
 
+![curves](https://github.com/user-attachments/assets/cece4bf3-5f98-41c2-ae21-8a41178b5076)
+
+![sperm accuracy](https://github.com/user-attachments/assets/c35a1fac-466f-45ae-8cb6-056e750ed5d7)
+
+
 
 ## Usage
 To run this project, follow these steps:
